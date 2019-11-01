@@ -1,0 +1,73 @@
+pip freeze ===> ver las versiones de Django and others versions
+django-admin ===> para ver los comandos de Django tiene
+django-admin startproject platzigram . ==> to create de folder with django
+
+-----------------------------------------
+execute file: manage.py ===> ver los comandos de cada archivo 
+
+
+-----------------------------------------
+rederizar la pagina -- do
+--------------------------------------
+execute command: manage.py runserver
+
+--------------------------------------
+CREATE TO APLICATIONS
+-------------------------------------
+execute command: manage.py startapp posts
+
+
+------------------------------------
+EXECUTE MIGRATIONS
+-----------------------------------
+execute command: manage.py migrate
+
+------------------------------------
+CREATE MIGRATIONS
+-----------------------------------
+execute command: manage.py makemigrations
+
+------------------------------------
+Import in console project Django
+-----------------------------------
+execute command: manage.py shell
+execute command: from posts.models import User
+execute command: pablo = User.object.create(
+							email='pablo@gmail.com',
+							pasword='1234567',
+							first_name='Pablo',
+							last_name='Rodraguez'
+						)
+
+			****** other way
+execute command: arturo = User()
+				arturo.email='arturo@platzi.com'
+				arturo.first_name='Arturo'
+				arturo.last_name='Martinez'
+				arturo.pasword='MSIComputer'
+				arturo.save()
+			****** process delete
+				arturo.delete()
+
+			****** search user
+				user = User.objects.get(email='freddier@platzi.com')
+			****** search query 2 user
+				platzi_users = User.objects.filter(email__endswith='@platzi.com')
+			****** updated
+				 platzi_users = User.objects.filter(email__endswith='@platzi.com').update(is_admin=True)
+
+-------------------------------------
+import console model User
+-------------------------------------
+execute command: from django.contrib.auth.models import User
+execute command: u = User.objects.create_user(Username='yesika', password='admin123') 
+
+-------------------------------------
+create superuser
+-------------------------------------
+execute command: manage.py createsuperuser
+
+
+
+
+

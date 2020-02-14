@@ -1,0 +1,25 @@
+"""Platzigram middlewarre """
+#Django
+from django.shortcuts import redirect
+from django.urls import reverse
+
+class ProfileCompletionMiddleware:
+	""""Profuile completion middleware,intaracting with the platform
+	have their profile picture and biography.
+	"""
+
+	def __init__(self, get_response):
+		"""middñwware inizialization. """
+		self.get_response = get_response
+
+	def __call__(self, request):
+		"""code to be executed for each request before the view is called."""
+		if not request.user.is_anonymous:
+			if not request.user.is_staff:
+				profile = request.user.profile
+				if not profile.picture or not profile.biography:
+					if request.path not in [reverse('users:update'), reverse('users:logout')]:
+						return redirect('users:update')
+
+		response = self.get_response(request)
+		return response

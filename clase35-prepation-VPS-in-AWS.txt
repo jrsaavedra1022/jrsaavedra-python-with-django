@@ -1,0 +1,21 @@
+El servidor
+Para la demostración de la clase se usa una máquina t2.nanoque Amazon Web Services provee con Ubuntu Server. Toda la configuración del proyecto vive en el mismo servidor. Es decir, tanto la base de datos como los archivos estáticos y el código fuente son manejados por una sola máquina. Es importante mencionar que en casos donde nuestro proyecto es más grande y requiere de una mejor arquitectura, es recomendable separar cada uno de estos de manera que la base de datos tenga su propio servidor, que exista un balanceo de carga hacia las instancias que manejan el código y que la media y los estáticos sean servidos desde una CDN. El caso de instalación que veremos en este post es un método que se puede usar en cualquier servidor Linux con Ubuntu Server; por lo que no es una configuración que únicamente se pueda llevar a cabo usando AWS. Cualquier proveedor que te dé acceso a una máquina Linux es útil.
+
+Crear el servidor
+Una vez dentro de la consola de administración de Amazon Web Services sigue estos pasos:
+
+Accede a la sección de Amazon EC2
+Da clic en el botón Launch Instance
+Selecciona Ubuntu 16.04 como el Sistema Operativo deseado
+Elige el tipo de instancia que más se adecúe a tus necesidades (t2.micro es parte de la capa gratuita)
+En el paso 3, deja todas las configuraciones tal y como están
+Selecciona la cantidad de GB de almacenamiento que quieras tener en tu instancia
+Asigna un nombre descriptivo a la instancia
+Crea un nuevo grupo de seguridad con el puerto 22, 80 y 8000 abiertos desde cualquier IP por el protocolo TCP
+Selecciona Launch
+Crea nuevas llaves SSH y descargarlas al ordenador
+Conectarse al servidor
+Para conectarnos al servidor usaremos la llave que acabamos de descargar. Es muy importante nunca perder esta llave ya que si la perdemos no tendremos otra forma de acceder al servidor.
+
+Poner la llave en modo lectura: [shell]chmod 0400 Platzi.pem[/shell]
+Conectarse al servidor usando la IP pública que AWS nos asigna: [shell]sudo ssh -i Platzi.pem ubuntu@IP[/shell]

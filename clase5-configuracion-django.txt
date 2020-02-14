@@ -1,6 +1,6 @@
 pip freeze ===> ver las versiones de Django and others versions
 django-admin ===> para ver los comandos de Django tiene
-django-admin startproject platzigram . ==> to create de folder with django
+django-admin startproject name_project . ==> punto: to create de folder with django
 
 -----------------------------------------
 execute file: manage.py ===> ver los comandos de cada archivo 
@@ -14,7 +14,7 @@ execute command: manage.py runserver
 --------------------------------------
 CREATE TO APLICATIONS
 -------------------------------------
-execute command: manage.py startapp posts
+execute command: manage.py startapp name_new_app
 
 
 ------------------------------------
@@ -41,7 +41,7 @@ execute command: pablo = User.object.create(
 
 			****** other way
 execute command: arturo = User()
-				arturo.email='arturo@platzi.com'
+				arturo.email='arturo@gmail.com'
 				arturo.first_name='Arturo'
 				arturo.last_name='Martinez'
 				arturo.pasword='MSIComputer'
@@ -50,11 +50,11 @@ execute command: arturo = User()
 				arturo.delete()
 
 			****** search user
-				user = User.objects.get(email='freddier@platzi.com')
+				user = User.objects.get(email='correo@gmail.com')
 			****** search query 2 user
-				platzi_users = User.objects.filter(email__endswith='@platzi.com')
+				_users = User.objects.filter(email__endswith='@gmail.com')
 			****** updated
-				 platzi_users = User.objects.filter(email__endswith='@platzi.com').update(is_admin=True)
+				_users = User.objects.filter(email__endswith='@gmail.com').update(is_admin=True)
 
 -------------------------------------
 import console model User
@@ -67,7 +67,30 @@ create superuser
 -------------------------------------
 execute command: manage.py createsuperuser
 
+-------------------------------------------
+*******************************************
+First commit from project => 631715f => 631715f9108efb34d9df09b06a2e4fd0511ed069
+*******************************************
+-------------------------------------------
 
 
+---------------------------------
+*********************************
+create new app modules => process
+*********************************
+---------------------------------
+execute command: manage.py startapp users 
+add sentence: settings -> models => users
+execute command: manage.py makemigrattions
+execute command: manage.py migrate
+execute command: manage.py createsuperuser
+execute command: manage.py runserver
 
 
+*********************************************
+Help's links
+
+# link reference: http://ccbv.co.uk/projects/Django/2.2/django.views.generic.edit/UpdateView/
+
+
+*************************************************

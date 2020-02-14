@@ -1,30 +1,24 @@
-"""post models"""
+"""Post models. """
 
-# django
+#Django
 from django.db import models
+from django.contrib.auth.models import User
 
-# link reference Django fields
-# https://docs.djangoproject.com/en/2.2/ref/models/fields/
+class Post(models.Model):
+	"""Post mdoel. """
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	profile = models.ForeignKey('users.Profile', on_delete=models.CASCADE)
 
-class User(models.Model):
-	"""User model """
-	email = models.EmailField(unique=True)
-	password = models.CharField(max_length=100)
-
-	first_name = models.CharField(max_length=100)
-	last_name = models.CharField(max_length=100)
-
-	is_admin = models.BooleanField(default=False)
-
-	bio = models.TextField(blank=True)
-
-	birthdate = models.DateField(blank=True, null=True)
+	title = models.CharField(max_length=255)
+	photo = models.ImageField(upload_to='post/photos')
 
 	created = models.DateTimeField(auto_now_add=True)
-	modified = models.DateTimeField(auto_now=True)	
+	modified = models.DateTimeField(auto_now=True)
+
 
 	def __str__(self):
-		"""return email."""
-		return self.email
-		
-	
+		""" return titel username """
+		return '{} by @{}'.format(self.title, self.user.username)
+
+
+#

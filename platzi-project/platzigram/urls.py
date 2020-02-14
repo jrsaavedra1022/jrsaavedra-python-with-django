@@ -1,19 +1,17 @@
-""" Platzigram URLs module. """
+"""Platzigram URLs module."""
 
 # Django
 from django.contrib import admin
-from django.urls import path
-
-# local imports
-from platzigram import views as local_views
-from posts import views as posts_views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.urls import path, include
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('hello-world', local_views.hello_world),
-    path('sorted', local_views.sorted_list),
-    path('hi/<str:name>/<int:age>/', local_views.say_hi),
 
-    path('post/', posts_views.list_posts)
-]
+    path('admin/', admin.site.urls),
+
+    path('', include(('posts.urls', 'posts'), namespace='posts')),
+    path('users/', include(('users.urls', 'users'), namespace='users')),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
